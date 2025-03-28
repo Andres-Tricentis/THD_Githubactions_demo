@@ -42,7 +42,7 @@ jobs:
           ENCODED_RESULTS=$(base64 -w 0 reports/test-results.xml)
           curl -X POST "$PULSE_WEBHOOK_URL" \
             -H "Content-Type: application/json" \
-            -d "{\"results\":\"$ENCODED_RESULTS\"}"
+            -d "{\"result\":\"$ENCODED_RESULTS\",\"projectId\":\"136384\",\"testcycle\":\"5867465\"}"
         env:
           PULSE_WEBHOOK_URL: "https://pulse-7.qtestnet.com/webhook/6f62bf7c-8fde-4835-8ace-2f1d90c62a37"
 
