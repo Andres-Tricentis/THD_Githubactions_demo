@@ -38,7 +38,7 @@ jobs:
           chromedriver --version
 
       - name: Run Selenium tests with Pytest
-        run: pytest tests/ --junitxml=reports/test-results.xml --html=reports/test-report.html
+        run: pytest tests/ --junitxml=reports/test-results.xml
 
       - name: Upload test results
         if: always()
