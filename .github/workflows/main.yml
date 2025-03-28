@@ -36,6 +36,16 @@ jobs:
       - name: Run Selenium tests with Pytest
         run: pytest tests/ --junitxml=reports/test-results.xml
 
+      - name: Encode test results and send to Pulse
+        if: always()
+        run: |
+          ENCODED_RESULTS=$(base64 -w 0 reports/test-results.xml)
+          curl -X POST "$PULSE_WEBHOOK_URL" \
+            -H "Content-Type: application/json" \
+            -d "{\"results\":\"$ENCODED_RESULTS\"}"
+        env:
+          PULSE_WEBHOOK_URL: "https://pulse-7.qtestnet.com/webhook/6f62bf7c-8fde-4835-8ace-2f1d90c62a37"
+
       - name: Upload test results
         if: always()
         uses: actions/upload-artifact@v4
