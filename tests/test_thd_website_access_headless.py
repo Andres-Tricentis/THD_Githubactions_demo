@@ -1,7 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-def test_google():
+def test_home_depot():
     # Set up options for headless Chrome
     options = Options()
     options.add_argument('--headless')  # Run in headless mode
