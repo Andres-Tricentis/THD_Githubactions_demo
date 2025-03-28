@@ -11,6 +11,6 @@ def test_google():
 
     # Initialize Chrome with options
     driver = webdriver.Chrome(options=options)
-    driver.get("https://www.google.com")
-    assert "Google" in driver.title
+    driver.get("https://www.homedepot.com/")
+    assert "The Home Depot" in driver.title
     driver.quit()
