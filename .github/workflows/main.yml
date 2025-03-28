@@ -30,11 +30,10 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y google-chrome-stable
-          # Use selenium-manager to handle the ChromeDriver version automatically
           python -m selenium.webdriver.chrome.service
 
       - name: Run Selenium tests with Pytest
-        run: pytest tests/ --junitxml=reports/test-results.xml
+        run: pytest tests/ --junitxml=reports/test-results.xml --junit-suite-name="Github_Actions_Selenium_Tests"
 
       - name: Encode test results and send to Pulse
         if: always()
