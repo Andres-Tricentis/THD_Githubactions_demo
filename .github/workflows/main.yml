@@ -25,17 +25,13 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install pytest pytest-html
 
       - name: Install WebDriver and Chrome
         run: |
           sudo apt-get update
           sudo apt-get install -y google-chrome-stable
-          CHROMEDRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)
-          wget -N https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
-          unzip chromedriver_linux64.zip
-          sudo mv chromedriver /usr/local/bin/
-          chromedriver --version
+          # Use selenium-manager to handle the ChromeDriver version automatically
+          python -m selenium.webdriver.chrome.service
 
       - name: Run Selenium tests with Pytest
         run: pytest tests/ --junitxml=reports/test-results.xml
